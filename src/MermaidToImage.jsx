@@ -10,6 +10,7 @@ function MermaidToImage() {
     C -->|Two| E[iPhone]
     C -->|Three| F[Car]`);
   const [svg, setSvg] = useState('');
+  const [error, setError] = useState(null);
   const mermaidRef = useRef(null);
 
   // 初始化 Mermaid
@@ -27,8 +28,10 @@ function MermaidToImage() {
       try {
         const { svg } = await mermaid.render('mermaid-svg', mermaidCode);
         setSvg(svg);
+        setError(null);
       } catch (error) {
         console.error('Error rendering mermaid:', error);
+        setError('Mermaid语法错误，请检查并修正您的图表语法');
       }
     };
     
@@ -77,6 +80,17 @@ function MermaidToImage() {
       
       <div className="preview-container">
         <h2>预览</h2>
+        {error && (
+          <div className="error-message" style={{ 
+            color: '#dc3545', 
+            backgroundColor: '#f8d7da', 
+            padding: '10px', 
+            borderRadius: '4px', 
+            marginBottom: '15px'
+          }}>
+            {error}
+          </div>
+        )}
         <div 
           ref={mermaidRef}
           className="mermaid-preview" 
@@ -85,8 +99,20 @@ function MermaidToImage() {
       </div>
       
       <div className="actions">
-        <button onClick={downloadPng}>下载 PNG</button>
-        <button onClick={downloadSvg}>下载 SVG</button>
+        <button 
+          onClick={downloadPng} 
+          disabled={!!error}
+          style={{ opacity: error ? 0.5 : 1 }}
+        >
+          下载 PNG
+        </button>
+        <button 
+          onClick={downloadSvg} 
+          disabled={!!error}
+          style={{ opacity: error ? 0.5 : 1 }}
+        >
+          下载 SVG
+        </button>
       </div>
     </div>
   );

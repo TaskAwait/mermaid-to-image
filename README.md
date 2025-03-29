@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Mermaid 图表转图片工具
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+这是一个基于React的应用程序，可以将Mermaid语法图表转换为PNG或SVG格式的图片。
 
-## Available Scripts
+## 功能特点
 
-In the project directory, you can run:
+- 实时预览Mermaid图表
+- 支持下载PNG和SVG格式
+- 语法错误提示
+- 响应式设计，适配不同设备
 
-### `npm start`
+## 安装
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. 克隆仓库
+```bash
+git clone https://github.com/your-repo/mermaid-to-image.git
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. 安装依赖
+```bash
+cd mermaid-to-image
+npm install
+```
 
-### `npm test`
+3. 启动应用
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 使用方法
 
-### `npm run build`
+1. 在文本框中输入Mermaid语法图表
+2. 实时预览图表效果
+3. 点击"下载PNG"或"下载SVG"按钮保存图片
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 示例代码
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```mermaid
+graph TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[Car]
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 注意事项
 
-### `npm run eject`
+- 确保使用正确的Mermaid语法
+- 图表过大时可能需要调整浏览器缩放
+- 下载功能在某些浏览器可能需要允许弹出窗口
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 开发
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 可用脚本
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`npm start` - 启动开发服务器
+`npm run build` - 构建生产版本
+`npm test` - 运行测试
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 依赖
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React 19
+- Mermaid 11
+- html-to-image

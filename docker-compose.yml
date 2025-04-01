@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mermaid-to-image:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME:-yourusername}/mermaid-to-image:${TAG:-latest}
+    container_name: mermaid-to-image
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # 如果需要持久化数据，可以添加卷挂载
+    # volumes:
+    #   - ./data:/app/data

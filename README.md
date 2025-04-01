@@ -8,8 +8,11 @@
 - 支持下载PNG和SVG格式
 - 语法错误提示
 - 响应式设计，适配不同设备
+- Docker支持，便于部署
 
 ## 安装
+
+### 方法一：本地开发
 
 1. 克隆仓库
 ```bash
@@ -26,6 +29,21 @@ npm install
 ```bash
 npm start
 ```
+
+### 方法二：使用Docker
+
+1. 使用Docker镜像
+```bash
+docker pull yourusername/mermaid-to-image:latest
+docker run -p 8080:80 yourusername/mermaid-to-image:latest
+```
+
+2. 或者使用Docker Compose
+```bash
+docker-compose up -d
+```
+
+访问 http://localhost:8080 即可使用应用。
 
 ## 使用方法
 
@@ -58,8 +76,48 @@ graph TD
 `npm run build` - 构建生产版本
 `npm test` - 运行测试
 
+## Docker部署
+
+### 本地构建和运行
+
+1. 构建Docker镜像
+```bash
+docker build -t mermaid-to-image .
+```
+
+2. 运行容器
+```bash
+docker run -p 8080:80 mermaid-to-image
+```
+
+### 推送到DockerHub
+
+1. 登录到DockerHub
+```bash
+docker login
+```
+
+2. 为镜像添加标签
+```bash
+docker tag mermaid-to-image yourusername/mermaid-to-image:latest
+```
+
+3. 推送镜像
+```bash
+docker push yourusername/mermaid-to-image:latest
+```
+
+### 使用GitHub Actions自动构建和推送
+
+本项目已配置GitHub Actions工作流，可以在代码推送到主分支或创建新标签时自动构建并推送Docker镜像到DockerHub。
+
+要启用此功能，请在GitHub仓库设置中添加以下密钥：
+- `DOCKERHUB_USERNAME`: 你的DockerHub用户名
+- `DOCKERHUB_TOKEN`: 你的DockerHub访问令牌
+
 ## 依赖
 
 - React 19
 - Mermaid 11
 - html-to-image
+- Docker & Nginx (用于容器化部署)

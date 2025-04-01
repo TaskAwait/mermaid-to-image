@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as htmlToImage from 'html-to-image';
 import mermaid from 'mermaid';
+import './MermaidToImage.css';
 
 function MermaidToImage() {
   const [mermaidCode, setMermaidCode] = useState(`graph TD
@@ -67,50 +68,67 @@ function MermaidToImage() {
   };
 
   return (
-    <div className="container">
-      <h1>Mermaid 图表转图片</h1>
-      
-      <div className="editor-container">
-        <textarea
-          value={mermaidCode}
-          onChange={(e) => setMermaidCode(e.target.value)}
-          placeholder="输入 Mermaid 语法..."
-        />
+    <div className="mermaid-container">
+      <div className="mermaid-header">
+        <h1 className="mermaid-title">Mermaid 图表转图片</h1>
+        <p className="mermaid-subtitle">轻松将 Mermaid 图表转换为高质量图片</p>
       </div>
       
-      <div className="preview-container">
-        <h2>预览</h2>
-        {error && (
-          <div className="error-message" style={{ 
-            color: '#dc3545', 
-            backgroundColor: '#f8d7da', 
-            padding: '10px', 
-            borderRadius: '4px', 
-            marginBottom: '15px'
-          }}>
-            {error}
-          </div>
-        )}
-        <div 
-          ref={mermaidRef}
-          className="mermaid-preview" 
-          dangerouslySetInnerHTML={{ __html: svg }} 
-        />
+      <div className="editor-section">
+        <div className="editor-header">
+          <h2 className="editor-title">编辑器</h2>
+        </div>
+        <div className="editor-container">
+          <textarea
+            value={mermaidCode}
+            onChange={(e) => setMermaidCode(e.target.value)}
+            placeholder="输入 Mermaid 语法..."
+            spellCheck="false"
+          />
+        </div>
+      </div>
+      
+      <div className="preview-section">
+        <div className="preview-header">
+          <h2 className="preview-title">预览</h2>
+        </div>
+        <div className="preview-container">
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+          <div 
+            ref={mermaidRef}
+            className="mermaid-preview" 
+            dangerouslySetInnerHTML={{ __html: svg }} 
+          />
+        </div>
       </div>
       
       <div className="actions">
         <button 
+          className="action-button download-png"
           onClick={downloadPng} 
           disabled={!!error}
-          style={{ opacity: error ? 0.5 : 1 }}
         >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
           下载 PNG
         </button>
         <button 
+          className="action-button download-svg"
           onClick={downloadSvg} 
           disabled={!!error}
-          style={{ opacity: error ? 0.5 : 1 }}
         >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
           下载 SVG
         </button>
       </div>
